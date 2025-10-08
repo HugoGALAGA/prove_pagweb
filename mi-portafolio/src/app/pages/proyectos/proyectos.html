@@ -54,31 +54,31 @@
       
       <!-- Cuerpo del Modal (El Formulario) -->
       <div class="modal-body">
-        <form>
+        <form [formGroup]="proyectoForm" (ngSubmit)="agregarProyecto()">
           <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre *</label>
-            <input type="text" class="form-control" id="nombre">
+            <label for="titulo" class="form-label">Nombre *</label>
+            <input type="text" class="form-control" id="titulo" formControlName="titulo">
           </div>
           <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción *</label>
-            <textarea class="form-control" id="descripcion" rows="3"></textarea>
+            <textarea class="form-control" id="descripcion" rows="3" formControlName="descripcion"></textarea>
           </div>
           <div class="mb-3">
             <label for="imgUrl" class="form-label">URL de Imagen</label>
-            <input type="text" class="form-control" id="imgUrl">
+            <input type="text" class="form-control" id="imgUrl" formControlName="imgUrl">
           </div>
           <div class="mb-3">
             <label for="tecnologias" class="form-label">Tecnologías (separadas por coma)</label>
-            <input type="text" class="form-control" id="tecnologias">
+            <input type="text" class="form-control" id="tecnologias" formControlName="tecnologias">
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="linkRepo" class="form-label">GitHub URL</label>
-              <input type="text" class="form-control" id="linkRepo">
+              <input type="text" class="form-control" id="linkRepo" formControlName="linkRepo">
             </div>
             <div class="col-md-6 mb-3">
               <label for="linkDemo" class="form-label">Demo URL</label>
-              <input type="text" class="form-control" id="linkDemo">
+              <input type="text" class="form-control" id="linkDemo" formControlName="linkDemo">
             </div>
           </div>
         </form>
@@ -87,7 +87,7 @@
       <!-- Pie del Modal (Botones de Acción) -->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Agregar Proyecto</button>
+        <button type="button" class="btn btn-primary" (click)="agregarProyecto()" [disabled]="proyectoForm.invalid">Agregar Proyecto</button>
       </div>
     </div>
   </div>
