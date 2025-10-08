@@ -1,0 +1,11 @@
+.navbar-custom {
+    background-color: #0b051a; 
+}
+
+.navbar-nav .nav-link {
+    transition: color 0.3s ease; 
+    &:hover,
+    &.active {
+        color: #7F00FF !important; 
+    }
+}

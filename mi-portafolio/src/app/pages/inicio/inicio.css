@@ -1,6 +1,26 @@
 
 .hero-section {
-    min-height: 90vh;
-    background-color: #212529; 
-    color: white; 
+    min-height: 100vh;
+    background-color: #0e071f; 
+    color: rgba(255, 255, 255, 0.664); 
+    position: relative;
+}
+
+.scroll-down-icon {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  a {
+    color: white;
+    font-size: 1.5rem;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 1;
+      transform: translateY(5px);
+    }
+  }
 }

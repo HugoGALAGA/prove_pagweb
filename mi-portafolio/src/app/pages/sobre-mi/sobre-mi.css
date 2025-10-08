@@ -1,5 +1,80 @@
 
 .about-section {
-    background-color: #212529; 
+    background-color: #0e071f; 
     color: white;
+}
+
+.image-container {
+  display: inline-block; 
+  padding: 5px; 
+  border-radius: 50%; 
+  background: linear-gradient(to right, #6DD5FA, #7F00FF); 
+}
+
+.section-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: #7F00FF; 
+    border-radius: 2px;
+  }
+}
+
+.content-box {
+  background-color: rgba(33, 37, 41, 0.5); 
+  padding: 30px;
+  border-radius: 15px;
+}
+
+
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  font-weight: bold;
+
+  .skill-info i {
+    color: #7F00FF; 
+  }
+}
+
+.progress-custom {
+  background-color: #343a40; 
+  border-radius: 5px;
+  height: 8px;
+  margin-top: 5px;
+}
+
+.progress-fill {
+  background-color: #7F00FF; 
+  height: 100%;
+  border-radius: 5px;
+}
+
+.section-title {
+  position: relative;
+  display: inline-block; 
+  padding-bottom: 10px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px; 
+    height: 4px; 
+    background-color: #7F00FF;
+    border-radius: 2px;
+  }
 }
