@@ -14,6 +14,5 @@ export const routes: Routes = [
     { path: 'proyectos', component: Proyectos },
     { path: 'experiencia', component: Experiencia },
     { path: 'contacto', component: Contacto },
-    { path: '', redirectTo: '/inicio', pathMatch: 'full' }, // Ruta por defecto
-    { path: '**', redirectTo: '/inicio' } // Cualquier otra ruta, redirige al inicio
+    { path: '**', redirectTo: '' } // Cualquier otra ruta, redirige al inicio
 ];

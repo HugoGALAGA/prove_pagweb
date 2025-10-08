@@ -1,0 +1,9 @@
+
+.proyectos-section {
+    background-color: #343a40; 
+    color: white;
+
+    .card {
+        border: 1px solid #495057;
+    }
+}

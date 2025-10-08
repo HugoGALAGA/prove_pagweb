@@ -1,29 +1,30 @@
+<!-- En el archivo: src/app/components/header/header.html -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/inicio">Portafolio</a>
+    <a class="navbar-brand" href="/inicio">Portafolio</a>
 
-    <!-- Botón para menú en móviles -->
+    <!-- ESTE ES EL BOTÓN CORREGIDO -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Enlaces de Navegación -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/inicio" routerLinkActive="active">Inicio</a>
+          <a class="nav-link" href="/inicio">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/sobre-mi" routerLinkActive="active">Sobre mí</a>
+          <a class="nav-link" href="#sobre-mi">Sobre mí</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/proyectos" routerLinkActive="active">Proyectos</a>
+          <a class="nav-link" href="#proyectos">Proyectos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/experiencia" routerLinkActive="active">Experiencia</a>
+          <a class="nav-link" href="#experiencia">Experiencia</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contacto" routerLinkActive="active">Contacto</a>
+          <a class="nav-link" href="#contacto">Contacto</a>
         </li>
       </ul>
     </div>

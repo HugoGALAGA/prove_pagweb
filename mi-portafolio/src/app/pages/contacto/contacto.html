@@ -1,1 +1,43 @@
-<p>contacto works!</p>
+<!-- En el archivo: src/app/pages/contacto/contacto.component.html -->
+
+<div id="contacto" class="contacto-section">
+  <div class="container py-5">
+    <h2 class="display-5 fw-bold text-center mb-5">Contacto</h2>
+
+    <div class="row">
+      <div class="col-md-8 col-lg-6 mx-auto">
+        <p class="text-center mb-4">
+          ¿Tienes una pregunta o quieres trabajar juntos? ¡No dudes en contactarme!
+        </p>
+        
+        <!-- Inicio del Formulario -->
+        <form>
+          <!-- Campo Nombre -->
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Tu Nombre" required>
+          </div>
+
+          <!-- Campo Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
+          </div>
+
+          <!-- Campo Mensaje -->
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="mensaje" rows="4" required></textarea>
+          </div>
+
+          <!-- Botón de Envío -->
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">Enviar Mensaje</button>
+          </div>
+        </form>
+        <!-- Fin del Formulario -->
+
+      </div>
+    </div>
+  </div>
+</div>

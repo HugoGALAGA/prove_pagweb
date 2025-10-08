@@ -1,0 +1,9 @@
+
+.experiencia-section {
+    background-color: #212529; 
+    color: white;
+
+    .card {
+        border: 1px solid #495057; 
+    }
+}
