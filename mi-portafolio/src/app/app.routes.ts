@@ -1,7 +1,5 @@
-// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 
-// Importa los componentes que creaste
 import { Inicio } from './pages/inicio/inicio';
 import { SobreMi } from './pages/sobre-mi/sobre-mi';
 import { Proyectos } from './pages/proyectos/proyectos';
@@ -14,5 +12,5 @@ export const routes: Routes = [
     { path: 'proyectos', component: Proyectos },
     { path: 'experiencia', component: Experiencia },
     { path: 'contacto', component: Contacto },
-    { path: '**', redirectTo: '' } // Cualquier otra ruta, redirige al inicio
+    { path: '**', redirectTo: '' } 
 ];

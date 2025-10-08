@@ -23,6 +23,8 @@
 }
 
 .project-card {
+  position: relative;
+
     background-color: #1a1a1a;
     border: 1px solid #2a2a2a;
     border-radius: 15px;
@@ -77,4 +79,21 @@
 
 
 
+}
+
+.btn-delete {
+  position: absolute; 
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+
+.project-card:hover .btn-delete {
+  opacity: 1;
+  transform: translateY(0);
 }

@@ -2,41 +2,44 @@
   <div class="container py-5">
 
     <div class="text-center">
-        <h2 class="display-5 fw-bold mb-5 section-title">Proyectos</h2>
+      <h2 class="display-5 fw-bold mb-5 section-title">Proyectos</h2>
     </div>
 
     <div class="text-center mb-5">
-    <button class="btn btn-custom-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+      <button class="btn btn-custom-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
         <i class="fas fa-plus me-2"></i>
         Agregar Proyecto
-    </button>
+      </button>
     </div>
-    
+
     <div class="row">
-      <!-- 
-        AQUÍ ESTÁ LA MAGIA:
-        *ngFor va a repetir este bloque por cada 'proyecto' en nuestra lista 'proyectos'
-      -->
+
       <div *ngFor="let proyecto of proyectos" class="col-md-6 col-lg-4 mb-4">
+        
         <div class="card project-card h-100">
-          <div>
-             <img [src]="proyecto.imgUrl" class="card-img-top" [alt]="proyecto.titulo">
+
+          <button class="btn btn-danger btn-delete" (click)="eliminarProyecto(proyecto)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+          
+          <div class="img-container">
+            <img [src]="proyecto.imgUrl" class="card-img-top" [alt]="proyecto.titulo">
           </div>
+          
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold">{{ proyecto.titulo }}</h5>
+            <h5 class="card-title">{{ proyecto.titulo }}</h5>
             <p class="card-text">{{ proyecto.descripcion }}</p>
             
-            <!-- Mostramos las tecnologías -->
-            <div class="tags mb-3">
+            <div class="tags">
               <span *ngFor="let tech of proyecto.tecnologias" class="tag">{{ tech }}</span>
             </div>
 
-            <!-- Botones -->
             <div class="mt-auto d-flex justify-content-between">
               <a [href]="proyecto.linkRepo" target="_blank" class="btn btn-custom-outline-dark"><i class="fab fa-github me-2"></i>Código</a>
               <a [href]="proyecto.linkDemo" target="_blank" class="btn btn-custom-outline-demo"><i class="fas fa-external-link-alt me-2"></i>Demo</a>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -52,7 +55,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       
-      <!-- Cuerpo del Modal (El Formulario) -->
       <div class="modal-body">
         <form [formGroup]="proyectoForm" (ngSubmit)="agregarProyecto()">
           <div class="mb-3">
@@ -84,7 +86,6 @@
         </form>
       </div>
 
-      <!-- Pie del Modal (Botones de Acción) -->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" (click)="agregarProyecto()" [disabled]="proyectoForm.invalid">Agregar Proyecto</button>
