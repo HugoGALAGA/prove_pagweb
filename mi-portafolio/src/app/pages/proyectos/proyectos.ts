@@ -1,42 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Proyecto } from '../../models/proyecto'; 
 import { CommonModule } from '@angular/common'; 
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-
+import { ProyectoService } from '../../services/proyecto'; 
 @Component({
   selector: 'app-proyectos',
+  standalone: true, 
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './proyectos.html',
-  styleUrl: './proyectos.css'
+  templateUrl: './proyectos.html', 
+  styleUrl: './proyectos.css' 
 })
 
-export class Proyectos { 
+export class Proyectos implements OnInit { 
 
-  proyectos: Proyecto[] = [
-    {
-      titulo: 'E-Commerce Platform',
-      descripcion: 'Plataforma completa de comercio electrónico con carrito, pagos y administración.',
-      tecnologias: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      linkDemo: '#',
-      linkRepo: '#',
-      imgUrl: 'imgs/git.png' 
-    },
-    {
-      titulo: 'Task Management App',
-      descripcion: 'Aplicación de gestión de tareas con colaboración en tiempo real.',
-      tecnologias: ['Next.js', 'TypeScript', 'PostgreSQL', 'Socket.io'],
-      linkDemo: '#',
-      linkRepo: '#',
-      imgUrl: 'imgs/data.png'
-    },
-
-  ];
+  proyectos: Proyecto[] = [];
 
   proyectoForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-      this.proyectoForm = this.fb.group({
+    proyectoAEditar: Proyecto | null = null; 
+
+    constructor(
+    private fb: FormBuilder,
+    private proyectoService: ProyectoService
+  ) {
+    this.proyectoForm = this.fb.group({
       titulo: ['', Validators.required],
       descripcion: ['', Validators.required],
       imgUrl: [''],
@@ -46,36 +33,69 @@ export class Proyectos {
     });
   }
 
-  agregarProyecto() {
-    if (this.proyectoForm.invalid) {
-      return; 
+  ngOnInit(): void {
+    this.proyectos = this.proyectoService.cargarProyectos();
+  }
+
+  iniciarEdicion(proyecto: Proyecto) {
+      this.proyectoAEditar = proyecto;
+
+      this.proyectoForm.patchValue({
+      titulo: proyecto.titulo,
+      descripcion: proyecto.descripcion,
+      imgUrl: proyecto.imgUrl,
+      tecnologias: proyecto.tecnologias.join(', '),
+      linkRepo: proyecto.linkRepo,
+      linkDemo: proyecto.linkDemo
+    });
+  }
+
+  eliminarProyecto(proyectoAEliminar: Proyecto) {
+    this.proyectos = this.proyectos.filter(p => p !== proyectoAEliminar);
+    
+    this.proyectoService.guardarProyectos(this.proyectos);
+
+    console.log('Proyecto eliminado:', proyectoAEliminar.titulo);
+  }
+
+  guardarProyecto() {
+    if (this.proyectoForm.invalid) return;
+
+    if (this.proyectoAEditar) {
+      const index = this.proyectos.findIndex(p => p === this.proyectoAEditar);
+      if (index !== -1) {
+        const proyectoActualizado = {
+          ...this.proyectoAEditar, 
+          ...this.proyectoForm.value,
+          tecnologias: this.proyectoForm.value.tecnologias.split(',').map((t:string) => t.trim())
+        };
+        this.proyectos[index] = proyectoActualizado;
+      }
+    } else {
+      const nuevoProyecto: Proyecto = {
+        titulo: this.proyectoForm.value.titulo,
+        descripcion: this.proyectoForm.value.descripcion,
+        imgUrl: this.proyectoForm.value.imgUrl || 'placeholder.jpg',
+        tecnologias: this.proyectoForm.value.tecnologias.split(',').map((tech: string) => tech.trim()),
+        linkRepo: this.proyectoForm.value.linkRepo,
+        linkDemo: this.proyectoForm.value.linkDemo
+      };
+      this.proyectos.push(nuevoProyecto);
     }
-
-    const nuevoProyecto: Proyecto = {
-      titulo: this.proyectoForm.value.titulo,
-      descripcion: this.proyectoForm.value.descripcion,
-      imgUrl: this.proyectoForm.value.imgUrl || 'placeholder.jpg',
-      tecnologias: this.proyectoForm.value.tecnologias.split(',').map((tech: string) => tech.trim()),
-      linkRepo: this.proyectoForm.value.linkRepo,
-      linkDemo: this.proyectoForm.value.linkDemo
-    };
-
-    this.proyectos.push(nuevoProyecto);
-
+      
+    this.proyectoService.guardarProyectos(this.proyectos);
+    this.cancelarEdicion(); 
+  }
+    
+  cancelarEdicion() {
+    this.proyectoAEditar = null;
     this.proyectoForm.reset();
-
+    // Código para cerrar el modal
     const modalElement = document.getElementById('addProjectModal');
     if (modalElement) {
       const modal = (window as any).bootstrap.Modal.getInstance(modalElement);
       if(modal) modal.hide();
     }
   }
-
-  eliminarProyecto(proyectoAEliminar: Proyecto) {
-  this.proyectos = this.proyectos.filter(p => p !== proyectoAEliminar);
-    
-  console.log('Proyecto eliminado:', proyectoAEliminar.titulo);
-  }
-
 
 }

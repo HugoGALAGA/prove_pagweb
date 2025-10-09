@@ -1,10 +1,8 @@
-<!-- En el archivo: src/app/components/header/header.html -->
 
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top navbar-custom">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold" href="/inicio"><span class="gradient-text">Portafolio</span></a>
 
-    <!-- ESTE ES EL BOTÓN CORREGIDO -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -27,6 +25,12 @@
           <a class="nav-link" href="#contacto">Contacto</a>
         </li>
       </ul>
+
+      <button class="btn theme-toggle-btn" (click)="toggleTheme()">
+        <i class="fas fa-sun" *ngIf="!isDarkMode"></i>
+        <i class="fas fa-moon" *ngIf="isDarkMode"></i>
+      </button>
+
     </div>
   </div>
 </nav>

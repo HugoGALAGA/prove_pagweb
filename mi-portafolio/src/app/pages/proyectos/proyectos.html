@@ -18,10 +18,18 @@
         
         <div class="card project-card h-100">
 
-          <button class="btn btn-danger btn-delete" (click)="eliminarProyecto(proyecto)">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-          
+          <div class="card-actions">
+            <button class="btn btn-sm btn-custom-pen btn-edit" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#addProjectModal" 
+                    (click)="iniciarEdicion(proyecto)">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="btn btn-sm btn-danger btn-delete" (click)="eliminarProyecto(proyecto)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+
           <div class="img-container">
             <img [src]="proyecto.imgUrl" class="card-img-top" [alt]="proyecto.titulo">
           </div>
@@ -51,12 +59,15 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addProjectModalLabel">Agregar Nuevo Proyecto</h5>
+        <h5 class="modal-title" id="addProjectModalLabel">
+          <span *ngIf="!proyectoAEditar">Agregar Nuevo Proyecto</span>
+          <span *ngIf="proyectoAEditar">Editar Proyecto</span>
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       
       <div class="modal-body">
-        <form [formGroup]="proyectoForm" (ngSubmit)="agregarProyecto()">
+        <form [formGroup]="proyectoForm" (ngSubmit)="guardarProyecto()">
           <div class="mb-3">
             <label for="titulo" class="form-label">Nombre *</label>
             <input type="text" class="form-control" id="titulo" formControlName="titulo">
@@ -87,8 +98,11 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="agregarProyecto()" [disabled]="proyectoForm.invalid">Agregar Proyecto</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelarEdicion()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="guardarProyecto()" [disabled]="proyectoForm.invalid">
+          <span *ngIf="!proyectoAEditar">Agregar Proyecto</span>
+          <span *ngIf="proyectoAEditar">Guardar Cambios</span>
+        </button>
       </div>
     </div>
   </div>

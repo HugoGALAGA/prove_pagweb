@@ -1,35 +1,57 @@
-
 <div id="contacto" class="contacto-section">
   <div class="container py-5">
-    <h2 class="display-5 fw-bold text-center mb-5">Contacto</h2>
+    <div class="text-center">
+      <h2 class="display-5 fw-bold mb-5 section-title">Contacto</h2>
+    </div>
 
     <div class="row">
-      <div class="col-md-8 col-lg-6 mx-auto">
-        <p class="text-center mb-4">
-          ¿Tienes una pregunta o quieres trabajar juntos? ¡No dudes en contactarme!
-        </p>
-        
-        <form>
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Tu Nombre" required>
-          </div>
+      <div class="col-lg-7 mb-4 mb-lg-0">
+        <div class="contact-card">
+          <h4 class="fw-bold mb-4">Envíame un mensaje</h4>
+          <form [formGroup]="contactForm" (ngSubmit)="enviarMensaje()">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" placeholder="Tu nombre" formControlName="nombre">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="tu@email.com" formControlName="email">
+            </div>
+            <div class="mb-3">
+              <label for="mensaje" class="form-label">Mensaje</label>
+              <textarea class="form-control" id="mensaje" rows="5" placeholder="Tu mensaje aquí..." formControlName="mensaje"></textarea>
+            </div>
+            <button type="submit" class="btn btn-custom-primary w-100" [disabled]="contactForm.invalid">
+              <i class="fas fa-paper-plane me-2"></i>Enviar Mensaje
+            </button>
+          </form>
+        </div>
+      </div>
 
-          <div class="mb-3">
-            <label for="email" class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="mensaje" class="form-label">Mensaje</label>
-            <textarea class="form-control" id="mensaje" rows="4" required></textarea>
-          </div>
-
-          <div class="d-grid">
-            <button type="submit" class="btn btn-primary btn-lg">Enviar Mensaje</button>
-          </div>
-        </form>
-
+      <div class="col-lg-5">
+        <div class="contact-card">
+          <h4 class="fw-bold mb-4">Conéctate conmigo</h4>
+            <p class="mb-4 contact-description">
+              Estoy siempre abierto a nuevas oportunidades y colaboraciones. ¡No dudes en contactarme por cualquier canal!
+            </p>
+          
+          <a href="#" target="_blank" class="contact-link">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a>
+          <a href="#" target="_blank" class="contact-link">
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="#" target="_blank" class="contact-link">
+            <i class="fab fa-twitter"></i>
+            <span>Twitter</span>
+          </a>
+          <a href="mailto:hugogalina@ufm.edu" class="contact-link">
+            <i class="fas fa-envelope"></i>
+            <span>Email</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>

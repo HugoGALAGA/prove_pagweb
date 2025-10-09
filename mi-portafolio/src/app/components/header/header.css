@@ -1,11 +1,23 @@
 .navbar-custom {
-    background-color: #0b051a; 
+    background-color: var(--color-surface);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); 
 }
 
 .navbar-nav .nav-link {
-    transition: color 0.3s ease; 
+    transition: color 0.3s ease;
+
     &:hover,
     &.active {
-        color: #7F00FF !important; 
+        color: var(--color-accent) !important; 
     }
+}
+
+.theme-toggle-btn {
+  color: var(--color-text-secondary);
+  font-size: 1.2rem;
+  margin-left: 20px;
+  
+  &:hover {
+    color: var(--color-accent);
+  }
 }

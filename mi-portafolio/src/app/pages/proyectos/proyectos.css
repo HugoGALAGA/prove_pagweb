@@ -1,7 +1,6 @@
-
 .proyectos-section {
-    background-color: #0e071f;
-    color: white;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
 }
 
 .section-title {
@@ -17,83 +16,86 @@
     transform: translateX(-50%);
     width: 60px;
     height: 4px;
-    background-color: #7F00FF;
+    background-color: var(--color-accent);
     border-radius: 2px;
-    }
+  }
 }
 
 .project-card {
   position: relative;
-
-    background-color: #1a1a1a;
-    border: 1px solid #2a2a2a;
-    border-radius: 15px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     
-
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(127, 0, 255, 0.3);
-        border-color: #7F00FF;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(127, 0, 255, 0.3);
+    border-color: var(--color-accent);
                
-        .card-img-top {
-            transform: scale(1.05); 
-        }
-    }
-
     .card-img-top {
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-
-        height: 200px;          
-        object-fit: cover;      
-        width: 100%;           
-        transition: transform 0.3s ease; 
+        transform: scale(1.05); 
     }
+  }
+
+  .card-img-top {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+    transition: transform 0.3s ease;
+  }
     
-    .card-title {
-        color: #FFFFFF;
-        font-weight: bold;
+  .card-title {
+    color: var(--color-text-primary);
+    font-weight: bold;
+  }
+
+  .card-text {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.5rem; 
+
+    .tag {
+      background-color: rgba(127, 0, 255, 0.1);
+      color: var(--color-accent-light);
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 0.8rem;
     }
-
-    .card-text {
-        color: #a0aec0; 
-        font-size: 0.9rem;
-    }
-
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 1.5rem; 
-
-        .tag {
-            background-color: rgba(127, 0, 255, 0.1);
-            color: #bf80ff;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-        }
-    }
-
-
-
+  }
 }
 
-.btn-delete {
-  position: absolute; 
+.card-actions {
+  position: absolute;
   top: 15px;
   right: 15px;
   z-index: 10;
-
+  display: flex;
+  gap: 8px;
   opacity: 0;
   transform: translateY(-10px);
   transition: all 0.3s ease;
 }
 
-
-.project-card:hover .btn-delete {
+.project-card:hover .card-actions {
   opacity: 1;
   transform: translateY(0);
+}
+    
+.btn-edit, .btn-delete {
+  border-radius: 50%; 
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

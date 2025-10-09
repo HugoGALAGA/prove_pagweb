@@ -1,6 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --color-background: #121212;
+  --color-surface: #1a1a1a; 
+  --color-border: #2a2a2a;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #a0aec0;
+  --color-accent: #7F00FF;
+  --color-accent-hover: #6a00d4;
+  --color-accent-light: #bf80ff;
+}
+
+body.light-theme {
+  --color-background: #f4f7f5;
+  --color-surface: #FFFFFF;
+  --color-border: #e2e8f0;
+  --color-text-primary: #1a202c;
+  --color-text-secondary: #4a5568;
+  --color-accent: #7F00FF;
+  --color-accent-hover: #6a00d4;
+  --color-accent-light: #7F00FF;
+}
+
+
 html {
   scroll-behavior: smooth;
+  background-color: var(--color-background);
+  color: var(--color-text-secondary);
 }
 
 body {
@@ -32,17 +57,16 @@ body {
 }
 
 .btn-custom-outline {
-  border: 2px solid #7F00FF;
-  color: white;
-  padding: 12px 30px;
+  border: 2px solid var(--color-accent);
+  color: var(--color-text-primary); 
   font-weight: bold;
   border-radius: 8px;
   background-color: transparent;
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: #7F00FF;
-    color: white;
+    background-color: var(--color-accent);
+    color: var(--color-background); 
   }
 }
 
@@ -101,4 +125,14 @@ body {
     background-color: #212529 !important;
     color: white !important;
     border: 1px solid #495057 !important;
+}
+
+.btn-custom-pen {
+  background-color: #7F00FF; 
+  color: white;
+
+  &:hover {
+    background-color: #6a00d4; 
+    color: white;
+  }
 }
