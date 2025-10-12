@@ -105,4 +105,36 @@ export class Proyectos implements OnInit {
     }
   }
 
+  sincronizarConGitHub() {
+    this.proyectoService.obtenerProyectosDeGitHub().subscribe({
+      next: (proyectosDeGitHub) => {
+        // Cargamos la lista actual para no perder los proyectos manuales
+        const proyectosActuales = this.proyectoService.cargarProyectos();
+
+        // Creamos una lista de títulos existentes para evitar duplicados
+        const titulosExistentes = new Set(proyectosActuales.map(p => p.titulo));
+
+        // Filtramos los proyectos de GitHub para añadir solo los que no existen
+        const nuevosProyectos = proyectosDeGitHub.filter(p => !titulosExistentes.has(p.titulo));
+
+        if (nuevosProyectos.length === 0) {
+          alert('¡Tus proyectos ya están al día!');
+          return;
+        }
+
+        // Añadimos los nuevos proyectos al principio de la lista
+        this.proyectos = [...nuevosProyectos, ...proyectosActuales];
+        
+        // Guardamos la lista combinada
+        this.proyectoService.guardarProyectos(this.proyectos);
+        
+        alert(`${nuevosProyectos.length} nuevo(s) proyecto(s) importado(s) de GitHub.`);
+      },
+      error: (err) => {
+        console.error('Error al sincronizar con GitHub', err);
+        alert('No se pudo conectar con la API de GitHub. Inténtalo más tarde.');
+      }
+    });
+  }
+
 }
