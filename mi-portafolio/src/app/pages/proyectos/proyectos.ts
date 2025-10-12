@@ -37,6 +37,13 @@ export class Proyectos implements OnInit {
     this.proyectos = this.proyectoService.cargarProyectos();
   }
 
+    abrirModalParaCrear() {
+    // 1. Asegura que no estamos en modo edición
+    this.proyectoAEditar = null;
+    // 2. Limpia cualquier dato que pudiera haber en el formulario
+    this.proyectoForm.reset();
+  }
+
   iniciarEdicion(proyecto: Proyecto) {
       this.proyectoAEditar = proyecto;
 
