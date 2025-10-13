@@ -1,21 +1,18 @@
-// En header.component.ts
-
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Necesario para *ngIf
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule], // <-- Añade CommonModule
+  imports: [CommonModule], 
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
-export class Header implements OnInit { // O HeaderComponent
+export class Header implements OnInit { 
 
   isDarkMode: boolean = true;
 
   ngOnInit(): void {
-    // Comprueba el tema guardado en localStorage o las preferencias del sistema
     if (localStorage.getItem('theme') === 'light' || 
        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
       this.setTheme(false);

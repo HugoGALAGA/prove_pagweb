@@ -1,0 +1,19 @@
+<div class="now-playing-container mb-4">
+  <div *ngIf="isLoading">
+    <p>Cargando canción desde Spotify...</p>
+  </div>
+
+  <div *ngIf="error">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="track && !isLoading" class="song-card">
+    <a [href]="track.songUrl" target="_blank">
+      <img [src]="track.albumImageUrl" alt="Carátula del álbum">
+    </a>
+    <div class="song-info">
+      <p class="song-title">{{ track.name }}</p>
+      <p class="song-artist">{{ track.artist }}</p>
+    </div>
+  </div>
+</div>

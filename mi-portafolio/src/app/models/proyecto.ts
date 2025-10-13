@@ -1,5 +1,3 @@
-// En src/app/models/proyecto.model.ts
-
 export interface Proyecto {
   titulo: string;
   descripcion: string;

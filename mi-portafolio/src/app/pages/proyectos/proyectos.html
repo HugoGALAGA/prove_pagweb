@@ -6,13 +6,11 @@
     </div>
 
     <div class="text-center mb-5">
-      <!-- Botón de Agregar Proyecto (no cambia) -->
       <button class= "btn-custom-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal" (click)="abrirModalParaCrear()">
         <i class="fas fa-plus me-2"></i>
         Agregar Proyecto
       </button>
       
-      <!-- === AÑADE ESTE BOTÓN === -->
       <button class="btn btn-secondary ms-3" (click)="sincronizarConGitHub()">
         <i class="fab fa-github me-2"></i>
         Sincronizar con GitHub

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { NowPlaying } from '../now-playing/now-playing';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [NowPlaying],
   templateUrl: './footer.html',
   styleUrl: './footer.css'
 })

@@ -38,9 +38,7 @@ export class Proyectos implements OnInit {
   }
 
     abrirModalParaCrear() {
-    // 1. Asegura que no estamos en modo edición
     this.proyectoAEditar = null;
-    // 2. Limpia cualquier dato que pudiera haber en el formulario
     this.proyectoForm.reset();
   }
 
@@ -97,7 +95,6 @@ export class Proyectos implements OnInit {
   cancelarEdicion() {
     this.proyectoAEditar = null;
     this.proyectoForm.reset();
-    // Código para cerrar el modal
     const modalElement = document.getElementById('addProjectModal');
     if (modalElement) {
       const modal = (window as any).bootstrap.Modal.getInstance(modalElement);
@@ -108,13 +105,10 @@ export class Proyectos implements OnInit {
   sincronizarConGitHub() {
     this.proyectoService.obtenerProyectosDeGitHub().subscribe({
       next: (proyectosDeGitHub) => {
-        // Cargamos la lista actual para no perder los proyectos manuales
         const proyectosActuales = this.proyectoService.cargarProyectos();
 
-        // Creamos una lista de títulos existentes para evitar duplicados
         const titulosExistentes = new Set(proyectosActuales.map(p => p.titulo));
 
-        // Filtramos los proyectos de GitHub para añadir solo los que no existen
         const nuevosProyectos = proyectosDeGitHub.filter(p => !titulosExistentes.has(p.titulo));
 
         if (nuevosProyectos.length === 0) {
@@ -122,10 +116,8 @@ export class Proyectos implements OnInit {
           return;
         }
 
-        // Añadimos los nuevos proyectos al principio de la lista
         this.proyectos = [...nuevosProyectos, ...proyectosActuales];
         
-        // Guardamos la lista combinada
         this.proyectoService.guardarProyectos(this.proyectos);
         
         alert(`${nuevosProyectos.length} nuevo(s) proyecto(s) importado(s) de GitHub.`);
