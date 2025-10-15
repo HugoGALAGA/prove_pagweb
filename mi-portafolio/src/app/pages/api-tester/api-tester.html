@@ -1,0 +1,89 @@
+<div id="api-tester" class="api-tester-section">
+  <div class="container py-5">
+    <div class="text-center">
+      <h2 class="display-5 fw-bold mb-5 section-title">API Tester (Educación)</h2>
+    </div>
+    <div class="row">
+      <div class="col-lg-7">
+        <h4 class="fw-bold mb-3">Datos desde la API</h4>
+        <button class="btn btn-secondary mb-3" (click)="cargarDatos()">
+          <i class="fas fa-sync-alt me-2"></i>Cargar Datos
+        </button>
+
+        <h5 class="mt-4">Educación</h5>
+        <div class="list-group">
+          <div *ngFor="let item of educationData" class="list-group-item project-item">
+            <div>
+              <p><strong>Escuela:</strong> {{ item.school }}</p>
+              <p><strong>Título:</strong> {{ item.degree }} ({{ item.startYear }} - {{ item.endYear }})</p>
+              <small class="item-details">{{ item.details }}</small>
+
+            </div>
+            <button class="btn btn-sm btn-outline-danger" (click)="onDeleteEducation(item.id)">Eliminar</button>
+          </div>
+        </div>
+
+        <h5 class="mt-4">Certificados</h5>
+        <div class="list-group">
+          <div *ngFor="let item of certificatesData" class="list-group-item project-item">
+            <div>
+              <p><strong>Nombre:</strong> {{ item.name }}</p>
+              <p><strong>Emisor:</strong> {{ item.issuer }}</p>
+            </div>
+            <button class="btn btn-sm btn-outline-danger" (click)="onDeleteCertificate(item.id)">Eliminar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="form-card mb-4">
+          <h4 class="fw-bold mb-3">Agregar Educación</h4>
+            <form [formGroup]="educationForm" (ngSubmit)="onSubmitEducation()">
+                <div class="mb-3">
+                <label class="form-label">Escuela *</label>
+                <input type="text" class="form-control" formControlName="school">
+                </div>
+                <div class="mb-3">
+                <label class="form-label">Título *</label>
+                <input type="text" class="form-control" formControlName="degree">
+                </div>
+                <div class="row">
+                <div class="col-6 mb-3">
+                    <label class="form-label">Año de Inicio</label>
+                    <input type="number" class="form-control" formControlName="startYear">
+                </div>
+                <div class="col-6 mb-3">
+                    <label class="form-label">Año de Fin</label>
+                    <input type="number" class="form-control" formControlName="endYear">
+                </div>
+                </div>
+                <div class="mb-3">
+                <label class="form-label">Detalles</label>
+                <textarea class="form-control" rows="3" formControlName="details"></textarea>
+                </div>
+                <button type="submit" class="btn btn-custom-primary w-100" [disabled]="educationForm.invalid">
+                Guardar Educación
+                </button>
+            </form>
+        </div>
+
+        <div class="form-card">
+          <h4 class="fw-bold mb-3">Agregar Certificado</h4>
+          <form [formGroup]="certificateForm" (ngSubmit)="onSubmitCertificate()">
+            <div class="mb-3">
+              <label class="form-label">Nombre *</label>
+              <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Emisor *</label>
+              <input type="text" class="form-control" formControlName="issuer">
+            </div>
+            <button type="submit" class="btn btn-custom-primary w-100" [disabled]="certificateForm.invalid">
+              Guardar Certificado
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

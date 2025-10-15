@@ -1,5 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ApiTester } from './pages/api-tester/api-tester';
+
 
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
@@ -11,7 +13,7 @@ import { Contacto } from './pages/contacto/contacto';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Footer, Inicio, SobreMi, Proyectos, Experiencia, Contacto],
+  imports: [RouterOutlet, Header, Footer, Inicio, SobreMi, Proyectos, Experiencia, Contacto, ApiTester],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

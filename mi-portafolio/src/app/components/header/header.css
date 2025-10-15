@@ -4,6 +4,9 @@
 }
 
 .navbar-nav .nav-link {
+
+    color: var(--color-text-secondary);
+
     transition: color 0.3s ease;
 
     &:hover,
